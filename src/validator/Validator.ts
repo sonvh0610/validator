@@ -1,5 +1,5 @@
 import ErrorHandler from "./ErrorHandler";
-import InputValidator from './InputValidator';
+import InputValidator from './NormalValidator';
 import { CONSTRAINT } from "./enums";
 import ConstraintFactory from "./Constraints/ConstraintFactory";
 

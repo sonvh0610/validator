@@ -1,7 +1,7 @@
 import { CONSTRAINT } from "../enums";
 import EmailValidator from "./EmailValidator";
 import UrlValidator from "./UrlValidator";
-import InputValidator from "../InputValidator";
+import InputValidator from "../NormalValidator";
 
 export default class ConstraintFactory {
   static createConstraint(constraintId: CONSTRAINT): InputValidator|null {
