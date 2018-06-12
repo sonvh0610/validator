@@ -17,13 +17,21 @@ class App extends React.Component {
     // .setPerformError(PERFORM_ERROR.RED_TEXT);
     
     const numberValidation = validator.createValidator().addCondition(new IsNumberCondition())
-    const emailValidation = validator.createValidator().resetWithConditions(new EmailCondition())
-    const urlValidation = validator.createValidator().resetWithConditions(new UrlCondition())
+    const emailValidation = validator.createValidator().addCondition(new EmailCondition())
+    const urlValidation = validator.createValidator().addCondition(new UrlCondition())
     const regexValidation = validator.createValidator()
-      .resetWithConditions(new RegexCondition(/^[A-Z]+$/i))
-      .setPerformError(PERFORM_ERROR.ALERT)
-   
+      .addCondition(new RegexCondition(/^[A-Z]+$/i))
+      .setPerformError(PERFORM_ERROR.ALERT);
+    const multipleValidation = validator.createValidator()
+      .addCondition(new RegexCondition(/^[a-zA-Z0-9]+$/i))
+      .addCondition(new IsNumberCondition())
+      .setPerformError(PERFORM_ERROR.ALERT);
 
+    // const customValidation = validator.createValidator()
+    //   .addCondition(new CustomCondition((asx)=>{
+    //     return "Wrong";
+    //   }))
+   
 
     return (
       <div className="App">
@@ -32,22 +40,30 @@ class App extends React.Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <div className="App-intro">
-          <label htmlFor='isNumber'>Is number:</label>
-          <InputType id='isNumber' type='text' inputValidation={numberValidation}/>
+          <label htmlFor='numberValidator'>Is number:</label>
+          <InputType id='numberValidator' type='text' inputValidation={numberValidation}/>
           <br/>
           <br/>
-          <label htmlFor='isEmail'>Is email:</label>
-          <InputType id='isEmail' type='text' inputValidation={emailValidation}/>
+          <label htmlFor='emailValidator'>Is email:</label>
+          <InputType id='emailValidator' type='text' inputValidation={emailValidation}/>
           <br/>
           <br/>
-          <label htmlFor='isUrl'>Is Url:</label>
-          <InputType id='isUrl' type='text' inputValidation={urlValidation}/>
+          <label htmlFor='urlValidator'>Is Url:</label>
+          <InputType id='urlValidator' type='text' inputValidation={urlValidation}/>
           <br/>
           <br/>
-          <label htmlFor='isRegex'>Regex matched (only alphabet) | Alert Strategy:</label>
-          <InputType id='isRegex' type='text' inputValidation={regexValidation}/>
+          <label htmlFor='regexValidator'>Is matched with Regex (only alphabet) | Alert Strategy:</label>
+          <InputType id='regexValidator' type='text' inputValidation={regexValidation}/>
           <br/>
           <br/>
+          <label htmlFor='customValidator'>Mutiple conditions (Regex: character + number AND IsNumber)</label>
+          <InputType id='customValidator' type='text' inputValidation={multipleValidation}/>
+          <br/>
+          <br/>
+          {/* <label htmlFor='customValidator'>Custom validator:</label>
+          <InputType id='customValidator' type='text' inputValidation={customValidation}/>
+          <br/>
+          <br/> */}
           
           
         </div>
