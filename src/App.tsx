@@ -4,18 +4,17 @@ import './App.css';
 import logo from './logo.svg';
 import { PERFORM_ERROR } from './validator/enums';
 import InputType from './validator/InputType';
-import InputValidator from './validator/InputValidator';
-import CustomCondition from './validator/Conditions/CustomCondition';
+import IsNumberCondition from './validator/Conditions/IsNumberCondition';
+import Validator from './validator/Validator';
 
 class App extends React.Component {
   public render() {
-    const inputValidation = new InputValidator();
+    const validator = Validator.getInstance();
+    const inputValidation = validator.createValidator();
     inputValidation.addCondition(
-      new CustomCondition((text) => {
-        return text.length > 5 ? '' : 'Text must longer than 5';
-      })
+      new IsNumberCondition()
     );
-    inputValidation.setPerformError(PERFORM_ERROR.ALERT);
+    inputValidation.setPerformError(PERFORM_ERROR.RED_TEXT);
 
     return (
       <div className="App">
