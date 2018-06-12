@@ -9,7 +9,7 @@ import Validator from './validator/Validator';
 import EmailCondition from './validator/Conditions/EmailCondition';
 import UrlCondition from './validator/Conditions/UrlCondition';
 import RegexCondition from './validator/Conditions/RegexCondition';
-// import CustomCondition from './validator/Conditions/CustomCondition';
+import CustomCondition from './validator/Conditions/CustomCondition';
 
 class App extends React.Component {
   public render() {
@@ -23,14 +23,16 @@ class App extends React.Component {
       .addCondition(new RegexCondition(/^[A-Z]+$/i))
       .setPerformError(PERFORM_ERROR.ALERT);
     const multipleValidation = validator.createValidator()
-      .addCondition(new RegexCondition(/^[a-zA-Z0-9]+$/i))
-      .addCondition(new IsNumberCondition())
+      .addCondition(
+        new RegexCondition(/^[a-zA-Z0-9]+$/i),
+        new IsNumberCondition()
+      )
       .setPerformError(PERFORM_ERROR.ALERT);
 
-    // const customValidation = validator.createValidator()
-    //   .addCondition(new CustomCondition((asx)=>{
-    //     return "Wrong";
-    //   }))
+    const customValidation = validator.createValidator()
+      .addCondition(new CustomCondition((text)=>{
+        return text.length > 5 ? '' : 'Characters cannot be less than 5';
+      }))
    
 
     return (
@@ -60,10 +62,10 @@ class App extends React.Component {
           <InputType id='customValidator' type='text' inputValidation={multipleValidation}/>
           <br/>
           <br/>
-          {/* <label htmlFor='customValidator'>Custom validator:</label>
+          <label htmlFor='customValidator'>Custom validator (String length can not less than 5):</label>
           <InputType id='customValidator' type='text' inputValidation={customValidation}/>
           <br/>
-          <br/> */}
+          <br/>
           
           
         </div>
