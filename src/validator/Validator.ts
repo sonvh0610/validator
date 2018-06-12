@@ -1,4 +1,5 @@
 import InputValidator from './InputValidator';
+import { PERFORM_ERROR } from './enums';
 
 export default class Validator {
   static validator: Validator = new Validator();
@@ -8,6 +9,6 @@ export default class Validator {
   }
 
   public createValidator(): InputValidator {
-    return new InputValidator();
+    return new InputValidator().setPerformError(PERFORM_ERROR.RED_TEXT);
   }
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import './App.css';
 
 import logo from './logo.svg';
-import { PERFORM_ERROR } from './validator/enums';
+// import { PERFORM_ERROR } from './validator/enums';
 import InputType from './validator/InputType';
 import IsNumberCondition from './validator/Conditions/IsNumberCondition';
 import Validator from './validator/Validator';
@@ -13,7 +13,7 @@ class App extends React.Component {
     
     const numberValidation = validator.createValidator()
     .addCondition(new IsNumberCondition())
-    .setPerformError(PERFORM_ERROR.RED_TEXT);
+    // .setPerformError(PERFORM_ERROR.RED_TEXT);
 
 
     return (
