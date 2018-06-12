@@ -1,4 +1,4 @@
-import RegexValidator from '../RegexValidator';
+import RegexValidator from '../Validators/RegexValidator';
 
 export default abstract class RegexDecorator extends RegexValidator {
   protected _validator: RegexValidator;

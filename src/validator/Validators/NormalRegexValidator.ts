@@ -1,4 +1,4 @@
-import RegexValidator from '../RegexValidator';
+import RegexValidator from '../Validators/RegexValidator';
 
 export default class NormalRegexValidator extends RegexValidator {
   constructor(regex: RegExp) {
