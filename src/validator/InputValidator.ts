@@ -13,6 +13,15 @@ export default class InputValidator {
     this.conditions.push(...condition);
   }
 
+  public resetCondition(...condition: Condition[]) {
+    this.conditions = [];
+  }
+
+  public resetThenAddCondition(...condition: Condition[]) {
+    this.resetCondition(...condition);
+    this.addCondition(...condition);
+  }
+
   public removeCondition(index: number) {
     this.conditions.splice(index);
   }
