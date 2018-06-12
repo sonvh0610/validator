@@ -5,7 +5,6 @@ import IPerformErrorHandler from './IPerformErrorHandler';
 
 const WarningTextStyled = styled.div`
   color: red;
-  display: inline-block;
 `;
 
 export default class PerformRedText implements IPerformErrorHandler {

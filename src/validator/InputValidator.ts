@@ -19,7 +19,7 @@ export default class InputValidator {
     return this;
   }
 
-  public resetThenAddCondition = (...condition: Condition[]) => {
+  public resetWithConditions = (...condition: Condition[]) => {
     this.resetCondition(...condition);
     this.addCondition(...condition);
     return this;

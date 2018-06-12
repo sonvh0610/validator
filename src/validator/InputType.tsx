@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-const styles ={
-  display: 'inline-block'
-}
+// const styles ={
+//   display: 'inline-block'
+// }
 export default class InputType extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -26,7 +26,7 @@ export default class InputType extends React.Component<any, any> {
   public render() {
     const { type } = this.props;
     return (
-      <div style={styles}>
+      <div >
         <input type={type} onBlur={this.performValidation} />
         {this.state.renderAfter}
       </div>

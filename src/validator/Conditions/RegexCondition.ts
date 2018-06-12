@@ -4,7 +4,7 @@ export default class RegexCondition extends Condition {
   private regex: RegExp;
   constructor(regex: RegExp) {
     super();
-    this.errorMessage = 'Regex invalid';
+    this.errorMessage = 'Not match with defined Regex';
     this.regex = regex;
   }
 
