@@ -1,11 +1,11 @@
 export default abstract class Condition {
-  protected _error: string = '';
+  protected errorMessage: string = '';
   get Error(): string {
-    return this._error;
+    return this.errorMessage;
   }
   set Error(error: string) {
-    this._error = error;
+    this.errorMessage = error;
   }
 
-  abstract checkCondition(str: string): boolean;
+  public abstract checkCondition(str: string): boolean;
 }

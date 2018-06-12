@@ -1,37 +1,36 @@
 import Condition from "./Conditions/Condition";
-import PerformErrorHandler from "./PerformError/PerformErrorHandler";
 import { PERFORM_ERROR } from "./enums";
+import IPerformErrorHandler from "./PerformError/IPerformErrorHandler";
 import PerformErrorFactory from "./PerformError/PerformErrorFactory";
 
 export default class InputValidator {
-  protected _conditions: Condition[];
-  private _performError: PerformErrorHandler | null;
+  protected conditions: Condition[] = [];
+  private performError: IPerformErrorHandler | null;
   
-  addCondition(...condition: Condition[]) {
-    this._conditions.push(...condition);
+  public addCondition(...condition: Condition[]) {
+    this.conditions.push(...condition);
   }
 
-  removeCondition(index: number) {
-    this._conditions.splice(index);
+  public removeCondition(index: number) {
+    this.conditions.splice(index);
   }
 
-  setPerformError(type: PERFORM_ERROR) {
-    this._performError = PerformErrorFactory.create(type);
+  public setPerformError(type: PERFORM_ERROR) {
+    this.performError = PerformErrorFactory.create(type);
   }
   
-  execute(str: string): string[] {
+  public execute(str: string) {
     const errors: string[] = [];
     
-    for (const condition of this._conditions) {
-      if (condition.checkCondition(str)) {
+    for (const condition of this.conditions) {
+      if (!condition.checkCondition(str)) {
         errors.push(condition.Error);
       }
     }
 
-    if (this._performError && errors.length > 0) {
-      this._performError.perform(errors[0]);
+    if (this.performError && errors.length > 0) {
+      return this.performError.perform(errors[0]);
     }
-
-    return errors;
+    return null;
   }
 }

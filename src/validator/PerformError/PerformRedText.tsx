@@ -1,13 +1,14 @@
 import * as React from 'react';
-import PerformErrorHandler from './PerformErrorHandler';
 import styled from 'styled-components';
+
+import IPerformErrorHandler from './IPerformErrorHandler';
 
 const WarningTextStyled = styled.div`
   color: red;
 `;
 
-export default class PerformRedText implements PerformErrorHandler {
-  perform(error: string) {
+export default class PerformRedText implements IPerformErrorHandler {
+  public perform(error: string) {
     return (
       <WarningTextStyled>{error}</WarningTextStyled>
     );

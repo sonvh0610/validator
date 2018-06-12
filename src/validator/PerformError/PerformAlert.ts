@@ -1,7 +1,7 @@
-import PerformErrorHandler from "./PerformErrorHandler";
+import IPerformErrorHandler from "./IPerformErrorHandler";
 
-export default class PerformAlert implements PerformErrorHandler {
-  perform(error: string) {
+export default class PerformAlert implements IPerformErrorHandler {
+  public perform(error: string) {
     alert(error);
   }
 }
