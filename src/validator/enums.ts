@@ -1,4 +1,4 @@
-export enum CONSTRAINT {
-  EMAIL,
-  URL
+export enum PERFORM_ERROR {
+  ALERT,
+  RED_TEXT
 }
