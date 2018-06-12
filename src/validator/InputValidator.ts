@@ -9,28 +9,33 @@ export default class InputValidator {
   private errorMessages: ErrorHandler[] = [];
   private performError: IPerformErrorHandler | null;
   
-  public addCondition(...condition: Condition[]) {
+  public addCondition = (...condition: Condition[]) =>{
     this.conditions.push(...condition);
+    return this;
   }
 
-  public resetCondition(...condition: Condition[]) {
+  public resetCondition = (...condition: Condition[]) =>{
     this.conditions = [];
+    return this;
   }
 
-  public resetThenAddCondition(...condition: Condition[]) {
+  public resetThenAddCondition = (...condition: Condition[]) => {
     this.resetCondition(...condition);
     this.addCondition(...condition);
+    return this;
   }
 
-  public removeCondition(index: number) {
+  public removeCondition = (index: number) =>{
     this.conditions.splice(index);
+    return this;
   }
 
-  public setPerformError(type: PERFORM_ERROR) {
+  public setPerformError = (type: PERFORM_ERROR) => {
     this.performError = PerformErrorFactory.create(type);
+    return this;
   }
   
-  public execute(str: string) {
+  public execute = (str: string) =>{
     this.errorMessages = [];
     
     for (const condition of this.conditions) {
@@ -44,4 +49,6 @@ export default class InputValidator {
     }
     return null;
   }
+
+
 }

@@ -10,11 +10,11 @@ import Validator from './validator/Validator';
 class App extends React.Component {
   public render() {
     const validator = Validator.getInstance();
-    const inputValidation = validator.createValidator();
-    inputValidation.addCondition(
-      new IsNumberCondition()
-    );
-    inputValidation.setPerformError(PERFORM_ERROR.RED_TEXT);
+    
+    const numberValidation = validator.createValidator()
+    .addCondition(new IsNumberCondition())
+    .setPerformError(PERFORM_ERROR.RED_TEXT);
+
 
     return (
       <div className="App">
@@ -23,7 +23,12 @@ class App extends React.Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <div className="App-intro">
-          <InputType type='text' inputValidation={inputValidation} />
+          <label htmlFor='isNumber'>Is number:</label>
+          <InputType id='isNumber' type='text' inputValidation={numberValidation}/>
+          <br/>
+          <label htmlFor='isEmail'>Is email:</label>
+          <InputType id='isEmail' type='text' inputValidation={numberValidation}/>
+          
         </div>
       </div>
     );
