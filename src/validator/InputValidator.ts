@@ -1,10 +1,12 @@
 import Condition from "./Conditions/Condition";
 import { PERFORM_ERROR } from "./enums";
+import ErrorHandler from "./ErrorHandler";
 import IPerformErrorHandler from "./PerformError/IPerformErrorHandler";
 import PerformErrorFactory from "./PerformError/PerformErrorFactory";
 
 export default class InputValidator {
   protected conditions: Condition[] = [];
+  private errorMessages: ErrorHandler[] = [];
   private performError: IPerformErrorHandler | null;
   
   public addCondition(...condition: Condition[]) {
@@ -20,16 +22,16 @@ export default class InputValidator {
   }
   
   public execute(str: string) {
-    const errors: string[] = [];
+    this.errorMessages = [];
     
     for (const condition of this.conditions) {
       if (!condition.checkCondition(str)) {
-        errors.push(condition.Error);
+        this.errorMessages.push(new ErrorHandler(condition.Error));
       }
     }
 
-    if (this.performError && errors.length > 0) {
-      return this.performError.perform(errors[0]);
+    if (this.performError && this.errorMessages.length > 0) {
+      return this.performError.perform(this.errorMessages[0].Message);
     }
     return null;
   }
